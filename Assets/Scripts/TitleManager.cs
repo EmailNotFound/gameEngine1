@@ -90,4 +90,9 @@ public class TitleManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void OnSettingButtonClick()
+    {
+        SceneManager.LoadScene("Setting");
+    }
 }

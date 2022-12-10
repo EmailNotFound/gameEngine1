@@ -12,7 +12,8 @@ public class PlayerCamera : MonoBehaviour
     Volume volume;
     Vignette vignette;
     Player player;
-
+    
+    public static bool IsVolumeOn;
     public bool Onhit;
     private void Start()
     {
@@ -29,11 +30,32 @@ public class PlayerCamera : MonoBehaviour
             var targetPosition = new Vector3(target.transform.position.x, target.transform.position.y, -10);
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.unscaledDeltaTime);
         }
+
+        if(IsVolumeOn == true)
+        {
+            volume.enabled = true;
+        }
+        else
+        {
+            volume.enabled = false;
+        }
     }
 
 
     public void Shake()
     {
         transform.position = new Vector3(transform.position.x + 1, transform.position.y - 2, -10);
+    }
+
+    public void VolumeOnOff(bool on)
+    {
+        if (on)
+        {
+            IsVolumeOn = true;
+        }
+        else
+        {
+            IsVolumeOn = false;
+        }
     }
 }
