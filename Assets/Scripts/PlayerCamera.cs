@@ -31,13 +31,13 @@ public class PlayerCamera : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.unscaledDeltaTime);
         }
 
-        if(IsVolumeOn == true)
+        if(IsVolumeOn == false)
         {
-            volume.enabled = true;
+            volume.enabled = false;
         }
         else
         {
-            volume.enabled = false;
+            volume.enabled = true;
         }
     }
 
