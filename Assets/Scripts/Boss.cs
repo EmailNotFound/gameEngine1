@@ -7,13 +7,17 @@ public class Boss : MonoBehaviour
     [SerializeField] float speed = 0.2f;
     [SerializeField] int EnemyHP = 10;
     [SerializeField] bool isBoss;
+    [SerializeField] SpriteRenderer spriteRenderer;
     GameObject player;
-        int maxEnemyHp;
+    int maxEnemyHp;
+    Material material;
+
 
     private void Start()
     {
         maxEnemyHp = EnemyHP;
         player = GameObject.FindGameObjectWithTag("Player");
+        material = spriteRenderer.material;
         if (isBoss)
         {
             StartCoroutine(BossCameraCoroutine());
@@ -38,6 +42,7 @@ public class Boss : MonoBehaviour
         if (EnemyHP <= maxEnemyHp/2)
         {
             speed = 3;
+            material.SetFloat("_Flash", 5f);
         }
     }
 
