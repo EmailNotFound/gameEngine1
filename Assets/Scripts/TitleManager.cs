@@ -95,4 +95,8 @@ public class TitleManager : MonoBehaviour
     {
         SceneManager.LoadScene("Setting");
     }
+
+    private void Start()
+    {
+    }
 }

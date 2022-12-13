@@ -17,9 +17,9 @@ public class PlayerCamera : MonoBehaviour
     public bool Onhit;
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();        
         volume = GetComponent<Volume>();
-        volume.profile.TryGet(out vignette);
+        volume.profile.TryGet(out vignette);        
     }
 
     private void Update()
