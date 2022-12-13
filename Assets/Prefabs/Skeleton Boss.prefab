@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.2
-  EnemyHP: 50
+  EnemyHP: 10
   isBoss: 1
   spriteRenderer: {fileID: 6294765412547996212}
 --- !u!61 &4247701808904981270

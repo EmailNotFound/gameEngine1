@@ -11,12 +11,14 @@ public class Boss : MonoBehaviour
     GameObject player;
     int maxEnemyHp;
     Material material;
+    Animator animator;
 
 
     private void Start()
     {
         maxEnemyHp = EnemyHP;
         player = GameObject.FindGameObjectWithTag("Player");
+        animator = GetComponent<Animator>();
         material = spriteRenderer.material;
         if (isBoss)
         {
@@ -39,11 +41,20 @@ public class Boss : MonoBehaviour
         transform.position += direction * Time.deltaTime * speed;
         transform.localScale = new Vector3(direction.x > 0 ? -1 : 1, 1, 1);
 
-        if (EnemyHP <= maxEnemyHp/2)
+        StartCoroutine(BossAttackCoroutine());
+
+        if (EnemyHP <= maxEnemyHp / 2)
         {
             speed = 3;
             material.SetFloat("_Flash", 5f);
         }
+
+        if (EnemyHP <= 0)
+        {
+            transform.position = source;
+            StartCoroutine(BossDeathCoroutine());
+        }
+
     }
 
     public void Damage(int damage)
@@ -58,11 +69,7 @@ public class Boss : MonoBehaviour
         {
             player.Ondamage(3);
         }
-
-        if (EnemyHP <= 0)
-        {
-            Destroy(gameObject);
-        }
+                
     }
 
     IEnumerator BossCameraCoroutine()
@@ -72,9 +79,26 @@ public class Boss : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
         Camera.main.orthographicSize = 2;
         yield return new WaitForSecondsRealtime(1f);
-        Camera.main.GetComponent<PlayerCamera>().target = player.gameObject;        
+        Camera.main.GetComponent<PlayerCamera>().target = player.gameObject;
         Camera.main.orthographicSize = 5;
         yield return new WaitForSecondsRealtime(2f);
         Time.timeScale = 1;
     }
+
+    IEnumerator BossDeathCoroutine()
+    {
+        animator.ResetTrigger("IsAttacking");
+        animator.SetBool("IsDead", true);
+        yield return new WaitForSecondsRealtime(4f);
+        Destroy(gameObject);
+    }
+
+    IEnumerator BossAttackCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        animator.SetTrigger("IsAttacking");
+        yield return new WaitForSeconds(1f);
+        animator.ResetTrigger("IsAttacking");
+    }
+
 }
