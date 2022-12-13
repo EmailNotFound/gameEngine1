@@ -69,7 +69,7 @@ public class Boss : MonoBehaviour
         {
             player.Ondamage(3);
         }
-                
+
     }
 
     IEnumerator BossCameraCoroutine()
@@ -95,10 +95,11 @@ public class Boss : MonoBehaviour
 
     IEnumerator BossAttackCoroutine()
     {
-        yield return new WaitForSeconds(3f);
-        animator.SetTrigger("IsAttacking");
-        yield return new WaitForSeconds(1f);
-        animator.ResetTrigger("IsAttacking");
+        while (true)
+        {
+            yield return new WaitForSeconds(5f);
+            animator.SetTrigger("IsAttacking");
+        }
     }
 
 }
