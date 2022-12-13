@@ -8,16 +8,19 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject Merman;
     [SerializeField] GameObject Zombie;
-    [SerializeField] GameObject player;
     [SerializeField] GameObject Patient;
     [SerializeField] GameObject Skeleton;
     [SerializeField] TMP_Text timerText;
     int spawnCounter = 1;
 
+    public Player CurrentPlayer;
+    public Player player;
+
     void Start()
     {
         StartCoroutine(SpawnEnemyCoroutine());
     }
+    
 
     private void Update()
     {
