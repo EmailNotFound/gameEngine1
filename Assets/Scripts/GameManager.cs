@@ -21,10 +21,22 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnEnemyCoroutine());
+        IEnumerator co = SpawnEnemyCoroutine();
+        StartCoroutine(co);
         Levelchange = true;
     }
-    
+
+    private static GameManager instance;
+    public static GameManager GetInstance()
+    {
+        return instance;
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
 
     private void Update()
     {
@@ -51,15 +63,24 @@ public class GameManager : MonoBehaviour
 
         if(minutes == 0 && seconds == 10 && Levelchange is true)
         {
-            StopCoroutine(SpawnEnemyCoroutine());
-            PoolManager.GetInstance().Mermanpool.Destroy();
-            PoolManager.GetInstance().Zombiepool.Destroy();
-            PoolManager.GetInstance().Bosspool.Destroy();
-            PoolManager.GetInstance().Patientpool.Destroy();
-
-            //PoolManager.GetInstance().Coinspool.Destroy();
-            //PoolManager.GetInstance().Scythepool.Destroy();
-
+            IEnumerator co = SpawnEnemyCoroutine();
+            StopCoroutine(co);
+            
+            var objects = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach(GameObject obj in objects)
+            {
+                Destroy(obj);
+            }
+            var objects2 = GameObject.FindGameObjectsWithTag("Drops");
+            foreach (GameObject obj in objects2)
+            {
+                Destroy(obj);
+            }
+            var objects3 = GameObject.FindGameObjectsWithTag("Projectiles");
+            foreach (GameObject obj in objects3)
+            {
+                Destroy(obj);
+            }
 
             background1.SetActive(false);
             background2.SetActive(true);
@@ -91,20 +112,6 @@ public class GameManager : MonoBehaviour
                 SpawnEnemy(Merman, 3);
                 SpawnEnemy(Zombie, 3);
                 SpawnEnemy(Patient, 3);
-                //yield return new WaitForSeconds(10f);
-                //SpawnEnemy(Merman, 3);
-                //SpawnEnemy(Zombie, 3);
-                //SpawnEnemy(Patient, 4);
-                //yield return new WaitForSeconds(15f);
-                //SpawnEnemy(Merman, 4);
-                //SpawnEnemy(Zombie, 3);
-                //SpawnEnemy(Patient, 4);
-                //yield return new WaitForSeconds(20f);
-                //SpawnEnemy(Merman, 2);
-                //SpawnEnemy(Zombie, 2);
-                //SpawnEnemy(Patient, 3);
-                //SpawnEnemy(Skeleton, 1);
-                //yield return new WaitForSeconds(5f);
             }
         }
     }

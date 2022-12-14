@@ -31,7 +31,7 @@ public class ObjectPool : MonoBehaviour
         return result;
     }
 
-    public void Destroy()
+    public void Disactive()
     {
         for (int i = 0; i < 300; i++)
         {

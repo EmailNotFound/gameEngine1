@@ -5715,6 +5715,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1133139392}
     - target: {fileID: 418138544360114497, guid: 1aeae897cf683d248ab41fcbc5342ee6, type: 3}
+      propertyPath: background1
+      value: 
+      objectReference: {fileID: 1133139392}
+    - target: {fileID: 418138544360114497, guid: 1aeae897cf683d248ab41fcbc5342ee6, type: 3}
       propertyPath: background2
       value: 
       objectReference: {fileID: 1747945896}
