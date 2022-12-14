@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
             curlvl++;
             Exptolvl += 3;
             maxplayerHP += 2;
+            playerHP += 3;
         }
     }
 

@@ -69,7 +69,10 @@ public class Enemy : MonoBehaviour
             {
                 Instantiate(crystal, transform.position, Quaternion.identity);
             }
-            Instantiate(gold, transform.position, Quaternion.identity);
+            var coinPrefab = PoolManager.GetInstance().Coinspool.Get();
+            coinPrefab.transform.position = transform.position;
+            coinPrefab.transform.rotation = Quaternion.identity;
+            coinPrefab.SetActive(true);
             TitleManager.saveData.goldCoins++;
         }
     }

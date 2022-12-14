@@ -57,8 +57,9 @@ public class GameManager : MonoBehaviour
             PoolManager.GetInstance().Bosspool.Destroy();
             PoolManager.GetInstance().Patientpool.Destroy();
 
-            PoolManager.GetInstance().Coinspool.Destroy();
-            PoolManager.GetInstance().Scythepool.Destroy();
+            //PoolManager.GetInstance().Coinspool.Destroy();
+            //PoolManager.GetInstance().Scythepool.Destroy();
+
 
             background1.SetActive(false);
             background2.SetActive(true);

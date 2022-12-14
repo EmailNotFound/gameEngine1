@@ -15,11 +15,13 @@ public class Scythe : MonoBehaviour
         if (enemy)
         {
             enemy.Damage(1);
+            Destroy(gameObject);
         }
         Boss boss = collision.gameObject.GetComponent<Boss>();
         if (boss)
         {
             boss.Damage(1);
+            Destroy(gameObject);
         }
     }
 

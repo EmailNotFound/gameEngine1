@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         StartCoroutine(ProjectileCoroutine());
+        
     }
 
     private void Start()
