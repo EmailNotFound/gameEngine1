@@ -11,11 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject Patient;
     [SerializeField] GameObject Skeleton;
     [SerializeField] TMP_Text timerText;
-    [SerializeField] GameObject background;
+    [SerializeField] GameObject background1;
     [SerializeField] GameObject background2;
 
-    int spawnCounter = 1;
-
+    
     public Player CurrentPlayer;
     public Player player;
     private bool Levelchange;
@@ -50,7 +49,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Death");
         }
 
-        if(minutes == 0 && seconds == 30 && Levelchange is true)
+        if(minutes == 0 && seconds == 10 && Levelchange is true)
         {
             StopCoroutine(SpawnEnemyCoroutine());
             PoolManager.GetInstance().Mermanpool.Destroy();
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour
             PoolManager.GetInstance().Coinspool.Destroy();
             PoolManager.GetInstance().Scythepool.Destroy();
 
-            background.SetActive(false);
+            background1.SetActive(false);
             background2.SetActive(true);
             StartCoroutine(SpawnEnemyCoroutine2());
             Levelchange = false;
